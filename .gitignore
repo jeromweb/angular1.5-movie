@@ -1,3 +1,5 @@
 .bowerrc
 .npmrc
 bower_components
+test
+tests
