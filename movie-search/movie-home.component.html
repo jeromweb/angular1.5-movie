@@ -27,6 +27,10 @@
 <hr>
 <div class="panel panel-info" ng-show="homesearch.msg">
   <div class="panel-heading">I just found theses {{homesearch.type.name}}</div>
-  <div class="panel-body">{{homesearch.msg}}</div>
+  <div class="panel-body">
+<p ng-repeat="(key, value) in homesearch.msg">
+  {{key}} => {{value}}
+</p>
+  </div>
 </div>
 </div>
