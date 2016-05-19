@@ -1,0 +1,12 @@
+<div class="input-group">
+  <input type="text" ng-model="homesearch.name" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="recherchez ici votre film/serie préférée..." style="">
+  <span class="input-group-btn">
+    <button class="btn btn-default ng-binding" type="button"> <i class="fa fa-search" aria-hidden="true"></i> &nbsp; Trouver
+    </button>
+  </span>
+</div>
+<hr>
+<div class="panel panel-info">
+  <div class="panel-heading">Résultat de recherche:</div>
+  <div class="panel-body">{{homesearch.msg}}</div>
+</div>
