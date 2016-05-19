@@ -1,39 +1,30 @@
-(function() {
+(function(angular) {
     "use strict";
 
-    var module = angular.module("moviesearch", []);
+    var module = angular.module("moviesearch");
 
-    module.component("movieApp", {
-        templateUrl: "movie-search/movie-app.component.html",
-        $routeConfig: [
-            { path: "/", component:"homeMovie", name: "Home" },
-            { path: "/search", component:"movieSearch", name: "Search" },
-            { path: "/about", component: "aboutMovie", name: "About" },
-            { path: "/**", redirectTo: ["search", ""] }
-        ]
-    });
-    function searchModule(){
-      var search = this;
-      search.name = "";
+    function infoMovie(){
+      var info = this;
+      info.name = "toto";
     };
-    function home(){
-      var home = this;
-      home.msg = "homie";
+    function homeSearch($http){
+      var homesearch= this;
+      homesearch.msg = "homie";
+      var url = "http://www.omdbapi.com/?type=movie&t=constantine&y=2005&plot=short&tomatoes=true&r=json";
+      //$http.get();
     };
     module.component("homeMovie", {
-      template:"<p>hello {{home.msg}}</p>",
-      controller: [home]
+      templateUrl:"movie-search/movie-home.component.html",
+      controller: ['$http',homeSearch],
+      controllerAs: 'homesearch'
     });
-    module.component("movieSearch", {
-       templateUrl: "movie-search/movie-search.component.html",
-      controller: [searchModule],
-      controllerAs: 'search'
-    });
-    module.component("aboutMovie", {
-        template: "about message..."
+    module.component("movieDetails", {
+       templateUrl: "movie-search/movie-details.component.html",
+      controller: [infoMovie],
+      controllerAs: 'info'
     });
 
-}());
+}(window.angular));
 
 //url example
 //http://www.omdbapi.com/?type=movie&t=constantine&y=2005&plot=short&tomatoes=true&r=json

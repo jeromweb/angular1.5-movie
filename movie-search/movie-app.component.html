@@ -1,17 +1,17 @@
-
-<div class="container">
-  <h1 class="text-center">Angular JS 1.5.* component movie search</h1>
-
-
-  <movie-search></movie-search>
-  <ul class="nav nav-pills">
-    <li><a class="btn btn-default active" ng-link="Home">home</a></li>
-    <li><a class="btn btn-default" ng-link="About">About</a></li>
-    <li><a class="btn btn-default" ng-link="Search">search</a></li>
-  </ul>
-  <hr>
-  <div>
-    <ng-outlet></ng-outlet>
-
+<div class="container-fluid">
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" ng-href="#/">angularCompMovie</a>
+    </div>
+    <ul class="nav navbar-nav">
+        <li class="active"><a ng-link=['Home'] >home</a></li>
+    </ul>
   </div>
+</nav>
+
+    <h1 class="text-center">Angular JS 1.5.* component movie search</h1>
+
+      <ng-outlet></ng-outlet>
+
 </div>
