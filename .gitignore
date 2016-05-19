@@ -1,5 +1,6 @@
 .bowerrc
 .npmrc
+.swp
 bower_components
 test
 tests

@@ -29,3 +29,6 @@ accordion .ng-enter {
 accordion .ng-leave {
     animation: fadeOut 0.5s
 }
+button.btn-search{
+      margin-top: 25px;
+}
