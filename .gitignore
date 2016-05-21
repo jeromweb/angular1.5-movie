@@ -2,5 +2,6 @@
 .npmrc
 .swp
 bower_components
+node_modules
 test
 tests
