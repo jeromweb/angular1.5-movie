@@ -10,13 +10,8 @@ h1{
 .ng-cloak .ng-enter{
       animation: fadeIn 2s
 }
-movie-app{
-
-	position: relative;
-}
 footer{
-	position: absolute;
-	padding: 2em;
+	padding: 1.6em;
 	bottom: 0;
 	width: 100%;
 	background-color: #95C2D7;
@@ -31,4 +26,14 @@ accordion .ng-leave {
 }
 button.btn-search{
       margin-top: 25px;
+}
+.content, footer{
+	position: relative;
+}
+div.content{
+	min-height: 900px;
+}
+.list-group-item{
+	    background-color: #F2F1EF;
+			color: #8290A5;
 }

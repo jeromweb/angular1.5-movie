@@ -3,9 +3,10 @@
 
   var module = angular.module("moviesearch");
 
-  function infoMovie(){
+  function infoMovie($scope){
     var info = this;
     info.name = "toto";
+    console.log(info);
   };
   function homeSearch($http){
     var homesearch = this;
@@ -18,40 +19,56 @@
         {"id" : 2,"name": "Serie"},
         {"id" : 3,"name": "Episode"}
       ];
-      homesearch.lookingFor = function(){
-        homesearch.type.name.trim();
 
-        switch (homesearch.type.name) {
-          case "Serie":
-          homesearch.type.name="series"
-          break;
-          case "Movie":
-          homesearch.type.name="movie"
-          break;
-          case "Episode":
-          homesearch.type.name="episode"
-          break;
-          default:
-
-        }
-        var url = "http://www.omdbapi.com/?type="+homesearch.type.name+"&t="+homesearch.search+"&tomatoes=true&r=json";
-        $http.get(url).then(function(success){
-          homesearch.msg = success.data;
-        });
-      };
     }
+    homesearch.lookingFor = function(){
+      homesearch.type.name.trim();
+
+      switch (homesearch.type.name) {
+        case "Serie":
+        homesearch.type.name="series"
+        break;
+        case "Movie":
+        homesearch.type.name="movie"
+        break;
+        case "Episode":
+        homesearch.type.name="episode"
+        break;
+        default:
+
+      }
+      var url = "http://www.omdbapi.com/?type="+homesearch.type.name+"&s="+homesearch.search+"&tomatoes=true&r=json";
+      $http.get(url).then(function(success){
+        for(var i = 0; i< success.data.Search.length; i++){
+          if(success.data.Search[i].Poster === "N/A"){
+            success.data.Search[i].Poster = "./movie-search/images/no-image.png";
+          }
+        }
+        homesearch.msg = success.data;
+      });
+      homeSearch.checkDetails = function(data){
+        console.log(data);
+      }
+    };
 
     //;
   };
   module.component("homeMovie", {
     templateUrl:"movie-search/movie-home.component.html",
     controller: ['$http', homeSearch],
-    controllerAs: 'homesearch'
+    controllerAs: 'homesearch',
+    bindings:{
+      data: '='
+    }
   });
   module.component("movieDetails", {
     templateUrl: "movie-search/movie-details.component.html",
-    controller: [infoMovie],
-    controllerAs: 'info'
+    controller: ['$scope', infoMovie],
+    controllerAs: 'info',
+    bindings:{
+      data: '='
+    },
+    transclude : true,
   });
 
 }(window.angular));

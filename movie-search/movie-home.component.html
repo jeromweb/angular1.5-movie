@@ -17,7 +17,7 @@
       <label for="searchChoice">Name <span data-ng-show="homesearch.type">of your {{homesearch.type.name}}</span> </label>
       <input id="searchChoice" type="text" ng-model="homesearch.search" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="recherchez ici votre film/serie préférée..." style="">
       <span class="input-group-btn">
-        <button class="btn btn-default btn-search ng-binding" type="button" data-ng-click="homesearch.lookingFor($event)"> <i class="fa fa-search" aria-hidden="true"></i> &nbsp; Trouver
+        <button class="btn btn-default btn-search ng-binding" type="submit" data-ng-click="homesearch.lookingFor($event)"> <i class="fa fa-search" aria-hidden="true"></i> &nbsp; Trouver
         </button>
       </span>
     </div>
@@ -26,11 +26,31 @@
 </form>
 <hr>
 <div class="panel panel-info" ng-show="homesearch.msg">
-  <div class="panel-heading">I just found theses {{homesearch.type.name}}</div>
+  <div class="panel-heading text-center"> <h2>Results for {{homesearch.type.name}}</h2> </div>
   <div class="panel-body">
-<p ng-repeat="(key, value) in homesearch.msg">
-  {{key}} => {{value}}
-</p>
+    <div class="list-group">
+  <div class="list-group-item" ng-repeat="movie in homesearch.msg.Search">
+    <a href=""  ng-click="$ctrl.checkDetails($event, movie)">un test</a>
+    <!-- ng repeat -->
+    <span class="badge"data-ng-bind="movie.Year"></span>
+  <div class="row">
+    <div class="col-xs-6">
+  <img data-ng-src="{{movie.Poster}}" alt="{{movie.Title}}" height="250">
+    </div>
+    <div class="col-xs-6">
+      <h3>
+        <span data-ng-bind="movie.Title"></span>
+      </h3>
+      <button class="btn btn-large btn-info" data="{{movie}}" ng-link=['Details']>
+        More informations about this {{homesearch.type.name}} <i class="fa fa-external-link" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div>
+</div>
+<!-- <pre ng-repeat="(key, value) in homesearch.msg">
+  {{key | json}} => {{value | json}}
+</pre> -->
   </div>
 </div>
 </div>
