@@ -14,7 +14,7 @@
     },
   $routeConfig: [
     {path: '/', name: 'Home', component: 'homeMovie', useAsDefault: true},
-    {path: '/details', name: 'Details', component: 'movieDetails' }
+    {path: '/details/:data', name: 'Details', component: 'movieDetails' }
   ]
 });
 })(window.angular);

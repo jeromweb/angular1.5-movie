@@ -30,9 +30,8 @@
   <div class="panel-body">
     <div class="list-group">
   <div class="list-group-item" ng-repeat="movie in homesearch.msg.Search">
-    <a href=""  ng-click="$ctrl.checkDetails($event, movie)">un test</a>
     <!-- ng repeat -->
-    <span class="badge"data-ng-bind="movie.Year"></span>
+    <span class="badge" data-ng-bind="movie.Year"></span>
   <div class="row">
     <div class="col-xs-6">
   <img data-ng-src="{{movie.Poster}}" alt="{{movie.Title}}" height="250">
@@ -40,17 +39,14 @@
     <div class="col-xs-6">
       <h3>
         <span data-ng-bind="movie.Title"></span>
-      </h3>
-      <button class="btn btn-large btn-info" data="{{movie}}" ng-link=['Details']>
+
+      <button class="btn btn-large btn-info" ng-link="['Details', {data:movie}]">
         More informations about this {{homesearch.type.name}} <i class="fa fa-external-link" aria-hidden="true"></i>
       </button>
     </div>
   </div>
 </div>
 </div>
-<!-- <pre ng-repeat="(key, value) in homesearch.msg">
-  {{key | json}} => {{value | json}}
-</pre> -->
   </div>
 </div>
 </div>

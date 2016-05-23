@@ -3,10 +3,14 @@
 
   var module = angular.module("moviesearch");
 
-  function infoMovie($scope){
+  function infoMovie(){
     var info = this;
     info.name = "toto";
-    console.log(info);
+
+    info.$routerOnActivate = function(next, previous) {
+            console.log(previous);
+            console.log(next);
+        };
   };
   function homeSearch($http){
     var homesearch = this;
@@ -46,9 +50,6 @@
         }
         homesearch.msg = success.data;
       });
-      homeSearch.checkDetails = function(data){
-        console.log(data);
-      }
     };
 
     //;
@@ -63,7 +64,7 @@
   });
   module.component("movieDetails", {
     templateUrl: "movie-search/movie-details.component.html",
-    controller: ['$scope', infoMovie],
+    controller: [infoMovie],
     controllerAs: 'info',
     bindings:{
       data: '='
