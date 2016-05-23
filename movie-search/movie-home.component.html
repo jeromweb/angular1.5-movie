@@ -40,7 +40,7 @@
       <h3>
         <span data-ng-bind="movie.Title"></span>
 
-      <button class="btn btn-large btn-info" ng-link="['Details', {data:movie}]">
+      <button class="btn btn-large btn-info" ng-link="['Details', {id:movie.imdbID} ]">
         More informations about this {{homesearch.type.name}} <i class="fa fa-external-link" aria-hidden="true"></i>
       </button>
     </div>

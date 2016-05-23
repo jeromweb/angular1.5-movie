@@ -3,14 +3,13 @@
 
   var module = angular.module("moviesearch");
 
-  function infoMovie(){
+  function infoMovie($http, $location){
     var info = this;
-    info.name = "toto";
-
-    info.$routerOnActivate = function(next, previous) {
-            console.log(previous);
-            console.log(next);
-        };
+      var current = $location.path();
+      var url = current.split('/')[2];
+        $http.get('http://www.omdbapi.com/?i='+url+'&r=json').then(function(retrieveData){
+          info.description = retrieveData.data;
+        });
   };
   function homeSearch($http){
     var homesearch = this;
@@ -43,6 +42,7 @@
       }
       var url = "http://www.omdbapi.com/?type="+homesearch.type.name+"&s="+homesearch.search+"&tomatoes=true&r=json";
       $http.get(url).then(function(success){
+        console.log(success);
         for(var i = 0; i< success.data.Search.length; i++){
           if(success.data.Search[i].Poster === "N/A"){
             success.data.Search[i].Poster = "./movie-search/images/no-image.png";
@@ -64,7 +64,7 @@
   });
   module.component("movieDetails", {
     templateUrl: "movie-search/movie-details.component.html",
-    controller: [infoMovie],
+    controller: ['$http', '$location', infoMovie],
     controllerAs: 'info',
     bindings:{
       data: '='
