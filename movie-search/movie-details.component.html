@@ -4,30 +4,41 @@
                  <div class="card">
 
 
-                     <div class="card-image">
+                     <div class="card-image" ng-style="{'background-image':'url('+ info.description.Poster +')'}">
                          <img class="img-responsive" ng-src={{info.description.Poster}}>
 
                          <span class="card-title">{{info.description.Title}} &nbsp; <span class="badge">{{info.description.Released}}</span></span>
                      </div>
 
-                     <div class="card-content">
-                         <p ng-bind="info.description.Plot"></p>
+                     <div class="card-content" style="background-color:rgba(255,255,255,0.55);color:#000;">
+                       <p>
+                         {{info.description.Plot}}
+                       </p>
                      </div>
 
-                     <div class="card-action row">
-                       <h4>Actors</h4>
-                       <p ng-bind="info.description.Actors" class="well col-md-6" style="background-color:rgba(255,255,255,0.55);color:#000;">
+                     <div class="card-action  well">
+                       <div class="col-md-4">
+                         <h4>Actors</h4>
+                         <p ng-bind="info.description.Actors">
 
-                       </p>
+                         </p>
+                       </div>
+                       <div class="col-md-4">
                        <h4>Directors</h4>
-                       <p ng-bind="info.description.Director" class="well col-md-6" style="background-color:rgba(255,255,255,0.55);color:#000;">
+                       <p ng-bind="info.description.Director">
 
                        </p>
+                        </div>
+                       <div class="col-md-4">
                        <h4>Country</h4>
-                       <p ng-bind="info.description.Country" class="well col-md-6" style="background-color:rgba(255,255,255,0.55);color:#000;">
+                       <p ng-bind="info.description.Country">
 
                        </p>
+                        </div>
                      </div>
                  </div>
+                 <pre class="well">
+                    {{info.description | json}}
+                 </pre>
              </div>
 </div>

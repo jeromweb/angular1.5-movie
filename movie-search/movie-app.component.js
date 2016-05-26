@@ -12,7 +12,7 @@
      return info.id = imdbid;
    };
    info.$postLink = function(){
-     var completeUrl = 'http://www.omdbapi.com/?i='+info.id+'&r=json';
+     var completeUrl = 'http://www.omdbapi.com/?i='+info.id+'&tomatoes=true&r=json';
 
      console.log(completeUrl);
        $http.get(completeUrl).then(function(retrieveData){
