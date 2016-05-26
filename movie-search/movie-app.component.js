@@ -3,15 +3,26 @@
 
   var module = angular.module("moviesearch");
 
-  function infoMovie($http, $location){
+  function infoMovie($http, $location, $window){
     var info = this;
-      var current = $location.path();
-      var url = current.split('/')[2];
-        $http.get('http://www.omdbapi.com/?i='+url+'&r=json').then(function(retrieveData){
-          info.description = retrieveData.data;
-        });
+
+   info.$routerOnActivate = function(next, previous) {
+     // Get the hero identified by the route parameter
+     var imdbid = next.params.id;
+     return info.id = imdbid;
+   };
+   info.$postLink = function(){
+     var completeUrl = 'http://www.omdbapi.com/?i='+info.id+'&r=json';
+
+     console.log(completeUrl);
+       $http.get(completeUrl).then(function(retrieveData){
+         info.description = retrieveData.data;
+       });
+  }
+
   };
-  function homeSearch($http){
+
+  function homeSearch($http, $window){
     var homesearch = this;
     homesearch.$onInit = function(){
       homesearch.msg = "";
@@ -49,6 +60,7 @@
           }
         }
         homesearch.msg = success.data;
+        sessionStorage.select = success.data.imdbID;
       });
     };
 
@@ -56,7 +68,7 @@
   };
   module.component("homeMovie", {
     templateUrl:"movie-search/movie-home.component.html",
-    controller: ['$http', homeSearch],
+    controller: ['$http' , '$window',homeSearch],
     controllerAs: 'homesearch',
     bindings:{
       data: '='
@@ -64,7 +76,7 @@
   });
   module.component("movieDetails", {
     templateUrl: "movie-search/movie-details.component.html",
-    controller: ['$http', '$location', infoMovie],
+    controller: ['$http', '$location', '$window', infoMovie],
     controllerAs: 'info',
     bindings:{
       data: '='

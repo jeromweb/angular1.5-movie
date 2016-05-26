@@ -1,52 +1,52 @@
 
-  <div class="container">
-    <form class="form">
-<div class="row">
-  <div class="col-md-6">
-    <div class="input-group">
-      <label for="selectChoice">What are you looking for?</label>
-    <select id="selectChoice" ng-model="homesearch.type" ng-options="option.name for option in homesearch.typeList track by option.id" class="form-control">
-<option value="some">une option</option>
-    </select>
-    </div>
+<div class="container">
+  <form class="form">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="input-group">
+          <label for="selectChoice">What are you looking for?</label>
+          <select id="selectChoice" ng-model="homesearch.type" ng-options="option.name for option in homesearch.typeList track by option.id" class="form-control">
+            <option value="some">une option</option>
+          </select>
+        </div>
 
-  </div>
-  <div class="col-md-6">
+      </div>
+      <div class="col-md-6">
 
-    <div class="input-group">
-      <label for="searchChoice">Name <span data-ng-show="homesearch.type">of your {{homesearch.type.name}}</span> </label>
-      <input id="searchChoice" type="text" ng-model="homesearch.search" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="recherchez ici votre film/serie préférée..." style="">
-      <span class="input-group-btn">
-        <button class="btn btn-default btn-search ng-binding" type="submit" data-ng-click="homesearch.lookingFor($event)"> <i class="fa fa-search" aria-hidden="true"></i> &nbsp; Trouver
-        </button>
-      </span>
+        <div class="input-group">
+          <label for="searchChoice">Name <span data-ng-show="homesearch.type">of your {{homesearch.type.name}}</span> </label>
+          <input id="searchChoice" type="text" ng-model="homesearch.search" class="form-control ng-pristine ng-valid ng-empty ng-touched" placeholder="recherchez ici votre film/serie préférée..." style="">
+          <span class="input-group-btn">
+            <button class="btn btn-default btn-search ng-binding" type="submit" data-ng-click="homesearch.lookingFor($event)"> <i class="fa fa-search" aria-hidden="true"></i> &nbsp; Trouver
+            </button>
+          </span>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-</form>
-<hr>
-<div class="panel panel-info" ng-show="homesearch.msg">
-  <div class="panel-heading text-center"> <h2>Results for {{homesearch.type.name}}</h2> </div>
-  <div class="panel-body">
-    <div class="list-group">
-  <div class="list-group-item" ng-repeat="movie in homesearch.msg.Search">
-    <!-- ng repeat -->
-    <span class="badge" data-ng-bind="movie.Year"></span>
-  <div class="row">
-    <div class="col-xs-6">
-  <img data-ng-src="{{movie.Poster}}" alt="{{movie.Title}}" height="250">
-    </div>
-    <div class="col-xs-6">
-      <h3>
-        <span data-ng-bind="movie.Title"></span>
+  </form>
+  <hr>
+  <div class="panel panel-info" ng-show="homesearch.msg">
+    <div class="panel-heading text-center"> <h2>Results for {{homesearch.type.name}}</h2> </div>
+    <div class="panel-body">
+      <div class="list-group">
+        <div class="list-group-item" ng-repeat="movie in homesearch.msg.Search">
+          <!-- ng repeat -->
+          <span class="badge" data-ng-bind="movie.Year"></span>
+          <div class="row">
+            <div class="col-xs-6">
+              <img data-ng-src="{{movie.Poster}}" alt="{{movie.Title}}" height="250">
+            </div>
+            <div class="col-xs-6">
+              <h3>
+                <span data-ng-bind="movie.Title"></span>
 
-      <button class="btn btn-large btn-info" ng-link="['Details', {id:movie.imdbID} ]">
-        More informations about this {{homesearch.type.name}} <i class="fa fa-external-link" aria-hidden="true"></i>
-      </button>
+                <button class="btn btn-large btn-info" ng-link="['Details', {id:movie.imdbID} ]">
+                  More informations about this {{homesearch.type.name}} <i class="fa fa-external-link" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-</div>
-  </div>
-</div>
-</div>
